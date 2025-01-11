@@ -1,9 +1,15 @@
 <template>
   <li>
-    <span @click="toggle">
-      {{ node.type === "folder" ? (isOpen ? "📂" : "📁") : "📄" }}
-      {{ node.name }}
-    </span>
+    <div class="node-content">
+      <span v-if="node.type === 'folder'" class="chevron" @click="toggle">
+        {{ isOpen ? "▼" : "▶" }}
+      </span>
+      <span v-else class="spacer"></span>
+      <span class="node-name" @click="toggle">
+        {{ node.type === "folder" ? "📂" : "📄" }}
+        {{ node.name }}
+      </span>
+    </div>
     <ul v-if="node.children && isOpen">
       <FileNode
         v-for="(child, index) in node.children"
@@ -39,16 +45,39 @@ export default {
 </script>
 
 <style scoped>
-ul {
+li {
   list-style-type: none;
-  padding-left: 20px;
 }
 
-li span {
+ul {
+  list-style: none;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+.node-content {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0rem;
+}
+
+.node-content:hover {
+  background-color: #306181;
   cursor: pointer;
 }
 
-li span:hover {
-  color: #007acc;
+.chevron {
+  width: 1rem;
+  font-size: 0.625rem;
+  display: inline-block;
+}
+
+.spacer {
+  width: 1rem;
+  display: inline-block;
+}
+
+.node-name {
+  margin-left: 0.25rem;
 }
 </style>
