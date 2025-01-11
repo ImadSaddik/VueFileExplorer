@@ -20,7 +20,7 @@
     </div>
     <ul v-if="node.children && isOpen && (maxDepth === -1 || level < maxDepth)">
       <FileNode
-        v-for="(child, index) in node.children"
+        v-for="(child, index) in sortedChildren"
         :key="index"
         :node="child"
         :max-depth="maxDepth"
@@ -133,6 +133,18 @@ export default {
       };
 
       return iconMap[ext] || this.defaultIcon;
+    },
+    sortedChildren() {
+      if (!this.node.children) return [];
+
+      return [...this.node.children].sort((a, b) => {
+        // If both are same type, sort alphabetically
+        if (a.type === b.type) {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+        }
+        // If different types, folders come first
+        return a.type === "folder" ? -1 : 1;
+      });
     },
   },
   methods: {

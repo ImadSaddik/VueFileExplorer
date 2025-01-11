@@ -2,7 +2,7 @@
   <div class="file-explorer">
     <ul>
       <FileNode
-        v-for="(node, index) in fileTree"
+        v-for="(node, index) in sortedFileTree"
         :key="index"
         :node="node"
         :max-depth="maxDepth"
@@ -31,6 +31,18 @@ export default {
     return {
       fileTree: fileTreeData,
     };
+  },
+  computed: {
+    sortedFileTree() {
+      return [...this.fileTree].sort((a, b) => {
+        // If both are same type, sort alphabetically
+        if (a.type === b.type) {
+          return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+        }
+        // If different types, folders come first
+        return a.type === "folder" ? -1 : 1;
+      });
+    },
   },
 };
 </script>
