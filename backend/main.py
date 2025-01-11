@@ -24,7 +24,7 @@ def get_file_tree(dir_path: str, items_to_ignore: list[str]) -> list[dict]:
 
 
 if __name__ == "__main__":
-    items_to_ignore = ['node_modules']
+    items_to_ignore = ['node_modules', '.git']
     file_tree = get_file_tree(
         dir_path=os.path.dirname(os.getcwd()),
         items_to_ignore=items_to_ignore
