@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FileExplorer />
+    <FileExplorer :maxDepth="-1" style="width: 20rem" />
   </div>
 </template>
 
