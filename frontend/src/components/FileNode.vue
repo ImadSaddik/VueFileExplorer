@@ -174,7 +174,7 @@ ul::before {
 }
 
 .node-content:hover {
-  background-color: #306181;
+  background-color: #f5f5f5;
   cursor: pointer;
 }
 
