@@ -47,12 +47,23 @@ export default {
 <style scoped>
 li {
   list-style-type: none;
+  position: relative;
 }
 
 ul {
   list-style: none;
   padding-left: 1.25rem;
   margin: 0;
+  position: relative;
+}
+
+ul::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0;
+  height: 100%;
+  border-left: 1px solid #ccc;
 }
 
 .node-content {
