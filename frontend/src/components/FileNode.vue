@@ -12,7 +12,9 @@
           class="file-icon"
           alt="file icon"
         />
-        <span v-else>📂</span>
+        <span v-else class="folder-icon">
+          <FontAwesomeIcon :icon="isOpen ? faFolderOpen : faFolder" />
+        </span>
         {{ node.name }}
       </span>
     </div>
@@ -33,6 +35,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
   faChevronRight,
   faChevronDown,
+  faFolder,
+  faFolderOpen,
 } from "@fortawesome/free-solid-svg-icons";
 
 import cssIcon from "@/assets/icons/css.svg";
@@ -81,6 +85,8 @@ export default {
       defaultIcon: fileIcon,
       faChevronRight,
       faChevronDown,
+      faFolder,
+      faFolderOpen,
     };
   },
   computed: {
@@ -213,5 +219,12 @@ ul::before {
 
 .max-depth:hover {
   background-color: transparent;
+}
+
+.folder-icon {
+  color: #dcb67a;
+  margin-right: 4px;
+  width: 16px;
+  display: inline-block;
 }
 </style>
