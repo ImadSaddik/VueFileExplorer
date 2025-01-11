@@ -1,11 +1,11 @@
 <template>
   <li>
-    <div class="node-content">
-      <span v-if="node.type === 'folder'" class="chevron" @click="toggle">
+    <div class="node-content" :class="{ 'max-depth': isMaxDepthReached }">
+      <span v-if="node.type === 'folder'" class="chevron" @click="handleClick">
         <FontAwesomeIcon :icon="isOpen ? faChevronDown : faChevronRight" />
       </span>
       <span v-else class="spacer"></span>
-      <span class="node-name" @click="toggle">
+      <span class="node-name" @click="handleClick">
         <img
           v-if="node.type === 'file'"
           :src="getFileIcon"
@@ -16,11 +16,13 @@
         {{ node.name }}
       </span>
     </div>
-    <ul v-if="node.children && isOpen">
+    <ul v-if="node.children && isOpen && (maxDepth === -1 || level < maxDepth)">
       <FileNode
         v-for="(child, index) in node.children"
         :key="index"
         :node="child"
+        :max-depth="maxDepth"
+        :level="level + 1"
       />
     </ul>
   </li>
@@ -64,6 +66,14 @@ export default {
       type: Object,
       required: true,
     },
+    maxDepth: {
+      type: Number,
+      required: true,
+    },
+    level: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
@@ -74,6 +84,13 @@ export default {
     };
   },
   computed: {
+    isMaxDepthReached() {
+      return (
+        this.node.type === "folder" &&
+        this.maxDepth !== -1 &&
+        this.level >= this.maxDepth
+      );
+    },
     getFileIcon() {
       if (this.node.type === "folder") return null;
 
@@ -113,6 +130,11 @@ export default {
     },
   },
   methods: {
+    handleClick() {
+      if (!this.isMaxDepthReached) {
+        this.toggle();
+      }
+    },
     toggle() {
       if (this.node.type === "folder") {
         this.isOpen = !this.isOpen;
@@ -175,5 +197,14 @@ ul::before {
   height: 16px;
   vertical-align: middle;
   margin-right: 4px;
+}
+
+.max-depth {
+  cursor: not-allowed !important;
+  opacity: 0.7;
+}
+
+.max-depth:hover {
+  background-color: transparent;
 }
 </style>

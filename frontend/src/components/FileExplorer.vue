@@ -1,7 +1,13 @@
 <template>
   <div class="file-explorer">
     <ul>
-      <FileNode v-for="(node, index) in fileTree" :key="index" :node="node" />
+      <FileNode
+        v-for="(node, index) in fileTree"
+        :key="index"
+        :node="node"
+        :max-depth="maxDepth"
+        :level="1"
+      />
     </ul>
   </div>
 </template>
@@ -12,6 +18,12 @@ import FileNode from "@/components/FileNode.vue";
 
 export default {
   name: "FileExplorer",
+  props: {
+    maxDepth: {
+      type: Number,
+      default: -1,
+    },
+  },
   components: {
     FileNode,
   },
