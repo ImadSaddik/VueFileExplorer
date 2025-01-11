@@ -6,7 +6,13 @@
       </span>
       <span v-else class="spacer"></span>
       <span class="node-name" @click="toggle">
-        {{ node.type === "folder" ? "📂" : "📄" }}
+        <img
+          v-if="node.type === 'file'"
+          :src="getFileIcon"
+          class="file-icon"
+          alt="file icon"
+        />
+        <span v-else>📂</span>
         {{ node.name }}
       </span>
     </div>
@@ -21,6 +27,27 @@
 </template>
 
 <script>
+import cssIcon from "@/assets/icons/css.svg";
+import csvIcon from "@/assets/icons/csv.svg";
+import docIcon from "@/assets/icons/doc.svg";
+import fileIcon from "@/assets/icons/file.svg";
+import gitIcon from "@/assets/icons/git.svg";
+import htmlIcon from "@/assets/icons/html.svg";
+import icoIcon from "@/assets/icons/ico.svg";
+import jsIcon from "@/assets/icons/javascript.svg";
+import jsonIcon from "@/assets/icons/json.svg";
+import jpgIcon from "@/assets/icons/jpg.svg";
+import mdIcon from "@/assets/icons/md.svg";
+import pngIcon from "@/assets/icons/png.svg";
+import pptIcon from "@/assets/icons/ppt.svg";
+import pythonIcon from "@/assets/icons/python.svg";
+import svgIcon from "@/assets/icons/svg.svg";
+import txtIcon from "@/assets/icons/txt.svg";
+import vueIcon from "@/assets/icons/vue.svg";
+import xlsIcon from "@/assets/icons/xls.svg";
+import xmlIcon from "@/assets/icons/xml.svg";
+import zipIcon from "@/assets/icons/zip.svg";
+
 export default {
   name: "FileNode",
   props: {
@@ -32,7 +59,47 @@ export default {
   data() {
     return {
       isOpen: false,
+      defaultIcon: fileIcon,
     };
+  },
+  computed: {
+    getFileIcon() {
+      if (this.node.type === "folder") return null;
+
+      const ext = this.node.name.split(".").pop().toLowerCase();
+      const iconMap = {
+        css: cssIcon,
+        csv: csvIcon,
+        doc: docIcon,
+        docx: docIcon,
+        file: fileIcon,
+        git: gitIcon,
+        gitignore: gitIcon,
+        html: htmlIcon,
+        ico: icoIcon,
+        js: jsIcon,
+        jsx: jsIcon,
+        json: jsonIcon,
+        jpg: jpgIcon,
+        jpeg: jpgIcon,
+        md: mdIcon,
+        png: pngIcon,
+        ppt: pptIcon,
+        pptx: pptIcon,
+        py: pythonIcon,
+        svg: svgIcon,
+        txt: txtIcon,
+        vue: vueIcon,
+        xls: xlsIcon,
+        xlsx: xlsIcon,
+        xml: xmlIcon,
+        zip: zipIcon,
+        tar: zipIcon,
+        gz: zipIcon,
+      };
+
+      return iconMap[ext] || this.defaultIcon;
+    },
   },
   methods: {
     toggle() {
@@ -90,5 +157,12 @@ ul::before {
 
 .node-name {
   margin-left: 0.25rem;
+}
+
+.file-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 4px;
 }
 </style>
