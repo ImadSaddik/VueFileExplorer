@@ -1,10 +1,15 @@
 <template>
-  <div class="home">Hi</div>
+  <div>
+    <FileExplorer />
+  </div>
 </template>
 
 <script>
+import FileExplorer from "@/components/FileExplorer.vue";
 export default {
   name: "HomeView",
-  components: {},
+  components: {
+    FileExplorer,
+  },
 };
 </script>
