@@ -5,7 +5,7 @@ I am recreating the file explorer from VS Code just for fun. I'm building it wit
 ## Demo
 
 - **Quick preview**  
-  ![Video preview]([/videos/demo.webm](https://github.com/ImadSaddik/VueFileExplorer/blob/main/videos/demo.webm))
+  ![Video preview](https://github.com/ImadSaddik/VueFileExplorer/blob/main/videos/demo.webm)
 
 - **Side-by-Side comparison**  
   ![Side by Side comparison](/images/comparison.svg)
