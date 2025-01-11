@@ -49,14 +49,20 @@ export default {
 
 <style scoped>
 .file-explorer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   overflow-x: hidden;
-  width: 100%;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
 }
 
 ul {
   list-style-type: none;
   padding-left: 0;
-  margin: 0rem;
+  margin: 0;
   width: 100%;
 }
 </style>
