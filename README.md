@@ -4,11 +4,12 @@ I am recreating the file explorer from VS Code just for fun. I'm building it wit
 
 ## Demo
 
-- **Quick preview**  
-  ![Video preview](https://github.com/ImadSaddik/VueFileExplorer/blob/main/videos/demo.webm)
+Here is a quick demo that shows the file explorer:
 
-- **Side-by-Side comparison**  
-  ![Side by Side comparison](/images/comparison.svg)
+https://github.com/user-attachments/assets/acaa3d77-fb4a-4c2f-a892-223dea35bbe2
+
+And here is a Side-by-Side comparison between VS Code's file explorer and mine:
+![Side by Side comparison](/images/comparison.svg)
 
 ## Getting started
 
