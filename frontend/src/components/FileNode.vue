@@ -171,6 +171,7 @@ ul::before {
   align-items: center;
   padding: 0.25rem 0rem;
   min-width: 0;
+  user-select: none; /* Prevent text selection */
 }
 
 .node-content:hover {
