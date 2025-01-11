@@ -170,6 +170,7 @@ ul::before {
   display: flex;
   align-items: center;
   padding: 0.25rem 0rem;
+  min-width: 0;
 }
 
 .node-content:hover {
@@ -190,6 +191,11 @@ ul::before {
 
 .node-name {
   margin-left: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
 }
 
 .file-icon {

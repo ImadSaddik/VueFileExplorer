@@ -36,8 +36,14 @@ export default {
 </script>
 
 <style scoped>
+.file-explorer {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 ul {
   list-style-type: none;
   padding-left: 0;
+  width: 100%;
 }
 </style>
