@@ -2,7 +2,7 @@
   <li>
     <div class="node-content">
       <span v-if="node.type === 'folder'" class="chevron" @click="toggle">
-        {{ isOpen ? "▼" : "▶" }}
+        <FontAwesomeIcon :icon="isOpen ? faChevronDown : faChevronRight" />
       </span>
       <span v-else class="spacer"></span>
       <span class="node-name" @click="toggle">
@@ -27,6 +27,12 @@
 </template>
 
 <script>
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {
+  faChevronRight,
+  faChevronDown,
+} from "@fortawesome/free-solid-svg-icons";
+
 import cssIcon from "@/assets/icons/css.svg";
 import csvIcon from "@/assets/icons/csv.svg";
 import docIcon from "@/assets/icons/doc.svg";
@@ -50,6 +56,9 @@ import zipIcon from "@/assets/icons/zip.svg";
 
 export default {
   name: "FileNode",
+  components: {
+    FontAwesomeIcon,
+  },
   props: {
     node: {
       type: Object,
@@ -60,6 +69,8 @@ export default {
     return {
       isOpen: false,
       defaultIcon: fileIcon,
+      faChevronRight,
+      faChevronDown,
     };
   },
   computed: {
@@ -146,7 +157,7 @@ ul::before {
 
 .chevron {
   width: 1rem;
-  font-size: 0.625rem;
+  font-size: 0.875rem;
   display: inline-block;
 }
 
