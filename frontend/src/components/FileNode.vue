@@ -1,11 +1,15 @@
 <template>
   <li>
-    <div class="node-content" :class="{ 'max-depth': isMaxDepthReached }">
-      <span v-if="node.type === 'folder'" class="chevron" @click="handleClick">
+    <div
+      class="node-content"
+      :class="{ 'max-depth': isMaxDepthReached }"
+      @click="handleClick"
+    >
+      <span v-if="node.type === 'folder'" class="chevron">
         <FontAwesomeIcon :icon="isOpen ? faChevronDown : faChevronRight" />
       </span>
       <span v-else class="spacer"></span>
-      <span class="node-name" @click="handleClick">
+      <span class="node-name">
         <img
           v-if="node.type === 'file'"
           :src="getFileIcon"
@@ -187,20 +191,22 @@ ul::before {
 .node-content {
   display: flex;
   align-items: center;
-  padding: 0.25rem 0rem;
+  padding: 0.25rem 0.5rem;
   min-width: 0;
-  user-select: none; /* Prevent text selection */
+  user-select: none;
+  cursor: pointer;
+  width: 100%;
 }
 
 .node-content:hover {
   background-color: #f5f5f5;
-  cursor: pointer;
 }
 
 .chevron {
   width: 1rem;
   font-size: 0.875rem;
   display: inline-block;
+  pointer-events: none;
 }
 
 .spacer {
@@ -215,6 +221,12 @@ ul::before {
   white-space: nowrap;
   flex: 1;
   min-width: 0;
+  pointer-events: none;
+}
+
+.file-icon,
+.folder-icon {
+  pointer-events: none;
 }
 
 .file-icon {
