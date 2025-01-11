@@ -2,4 +2,12 @@
   <router-view />
 </template>
 
-<style></style>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 1;
+  padding: 0;
+}
+</style>
